@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: theme('fontFamily.sans');
+  background: radial-gradient(circle at top, rgba(248, 113, 113, 0.15), transparent 40%), #05060a;
+  color: white;
+}
