@@ -74,10 +74,10 @@ export function SideBanner({ position }: SideBannerProps) {
         if (banner) {
           return (
             <a
-              key={`${position}-${index}`}
               className={`${cardBaseClass} overflow-hidden p-0 transition hover:scale-[1.02] hover:shadow-neon`}
               href={banner.href}
-              rel="sponsored noopener"
+              key={`${position}-${index}`}
+              rel="sponsored noopener noreferrer"
               target="_blank"
             >
               <img
@@ -93,7 +93,10 @@ export function SideBanner({ position }: SideBannerProps) {
         }
 
         return (
-          <div key={`${position}-${index}`} className={`${cardBaseClass} min-h-[240px] px-3`}>
+          <div
+            className={`${cardBaseClass} min-h-[240px] px-3`}
+            key={`${position}-${index}`}
+          >
             Ad Banner
           </div>
         );

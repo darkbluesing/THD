@@ -1,16 +1,16 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test.describe('YouTube Video Grid', () => {
-  test('should load videos and display them in the grid', async ({ page }) => {
+test.describe("YouTube Video Grid", () => {
+  test("should load videos and display them in the grid", async ({ page }) => {
     const consoleErrors: string[] = [];
-    page.on('console', (msg) => {
-      if (msg.type() !== 'error') {
+    page.on("console", (msg) => {
+      if (msg.type() !== "error") {
         return;
       }
 
       const text = msg.text();
 
-      if (text.includes('favicon.ico')) {
+      if (text.includes("favicon.ico")) {
         return;
       }
 
@@ -18,7 +18,7 @@ test.describe('YouTube Video Grid', () => {
         return;
       }
 
-      if (text.includes('__Secure-YEC')) {
+      if (text.includes("__Secure-YEC")) {
         return;
       }
 
@@ -26,9 +26,9 @@ test.describe('YouTube Video Grid', () => {
     });
 
     // Intercept the network request to the videos API
-    const apiResponsePromise = page.waitForResponse('**/api/youtube/videos**');
+    const apiResponsePromise = page.waitForResponse("**/api/youtube/videos**");
 
-    await page.goto('/');
+    await page.goto("/");
 
     const apiResponse = await apiResponsePromise;
     const responseStatus = apiResponse.status();
@@ -47,10 +47,10 @@ test.describe('YouTube Video Grid', () => {
     expect(Array.isArray(responseBody.videos)).toBe(true);
 
     // Wait for the grid to be populated and check the number of video cards
-    const videoGrid = page.getByTestId('video-grid-body');
+    const videoGrid = page.getByTestId("video-grid-body");
     await expect(videoGrid).toBeVisible();
 
-    const videoCards = videoGrid.locator('article');
+    const videoCards = videoGrid.locator("article");
     const count = await videoCards.count();
     console.log(`Found ${count} video cards rendered in the DOM.`);
 

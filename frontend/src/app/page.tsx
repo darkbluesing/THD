@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 import { SideBanner } from "@/components/SideBanner";
@@ -19,9 +19,9 @@ export default function Home() {
                 alt="오늘의 핫딜모닝 로고"
                 className="h-12 w-auto sm:h-16"
                 height={128}
-                priority
                 src="/핫모닝.png"
                 width={128}
+                priority
               />
               <h2 className="text-5xl font-bold">오늘의 핫딜모닝</h2>
             </div>

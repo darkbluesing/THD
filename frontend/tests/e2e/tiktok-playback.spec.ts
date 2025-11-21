@@ -37,7 +37,10 @@ test.describe("TikTok Playback Issue Diagnosis", () => {
   });
 
   async function playTikTokVideo(page: Page, videoIndex: number) {
-    const videoCard = page.getByTestId("video-grid-body").locator("article").nth(videoIndex);
+    const videoCard = page
+      .getByTestId("video-grid-body")
+      .locator("article")
+      .nth(videoIndex);
     await expect(videoCard).toBeVisible({ timeout: 15_000 }); // Revert to original timeout
     await videoCard.locator('button[aria-label$="상세 보기"]').click();
 
@@ -69,7 +72,9 @@ test.describe("TikTok Playback Issue Diagnosis", () => {
     return { modal, tiktokFrame };
   }
 
-  test("should play the first TikTok video and then a second one without black screen", async ({ page }) => {
+  test("should play the first TikTok video and then a second one without black screen", async ({
+    page,
+  }) => {
     // test.setTimeout(60_000); // Remove global test timeout
     const { modal: modal1 } = await playTikTokVideo(page, 0);
     expect(consoleErrors).toEqual([]);
@@ -83,7 +88,10 @@ test.describe("TikTok Playback Issue Diagnosis", () => {
     const { modal: modal2 } = await playTikTokVideo(page, 1);
     expect(consoleErrors).toEqual([]);
 
-    console.log("Network Requests after second video:", networkRequests.filter(req => req.url.includes("tiktok.com")));
+    console.log(
+      "Network Requests after second video:",
+      networkRequests.filter((req) => req.url.includes("tiktok.com")),
+    );
     console.log("Console Errors after second video:", consoleErrors);
 
     await expect(modal2).toBeVisible();
