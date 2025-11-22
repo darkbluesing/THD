@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link"; // Import Link
 import { SideBanner } from "@/components/SideBanner";
 import { AffiliateProductList } from "@/components/AffiliateProductList";
 
@@ -13,19 +14,21 @@ export default function Home() {
 
       <div className="relative z-10 min-h-screen w-full px-4 py-10 sm:px-6 lg:px-0">
         <div className="mx-auto w-full max-w-[1600px] px-2 sm:px-4 lg:px-8">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center text-white">
-            <div className="flex items-center justify-center gap-4">
-              <Image
-                alt="오늘의 핫딜모닝 로고"
-                className="h-12 w-auto sm:h-16"
-                height={128}
-                src="/핫모닝.png"
-                width={128}
-                priority
-              />
-              <h2 className="text-5xl font-bold">오늘의 핫딜모닝</h2>
+          <Link href="/" passHref>
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center text-white cursor-pointer">
+              <div className="flex items-center justify-center gap-4">
+                <Image
+                  alt="오늘의 핫딜모닝 로고"
+                  className="h-12 w-auto sm:h-16"
+                  height={128}
+                  src="/핫모닝.png"
+                  width={128}
+                  priority
+                />
+                <h2 className="text-5xl font-bold">오늘의 핫딜모닝</h2>
+              </div>
             </div>
-          </div>
+          </Link>
 
           <main className="mt-8 grid w-full grid-cols-1 items-start gap-6 lg:mt-10 lg:grid-cols-[200px_minmax(0,1fr)_200px]">
             <div className="hidden self-start justify-self-start lg:ml-6 lg:block">
